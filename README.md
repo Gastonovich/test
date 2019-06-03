@@ -1,5 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
--Added Redux, Router, Redux-Thunk
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). </br>
+  -Added Redux, Router, Redux-Thunk </br>
 In the project directory, you can run:
 
 ### `git clone https://github.com/Gastonovich/test`
