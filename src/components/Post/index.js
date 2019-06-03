@@ -7,7 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import axios from "axios";
+import addComment from './addComment.js'
+import CommentsList from './commentsList.js'
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -48,12 +49,7 @@ const Description = styled.p`
   color: rgba(0, 0, 0, 0.75);
 `;
 
-const Comments = styled.div`
-  width: 80%;
-`;
-const Item = styled.div`
-  margin: 2em;
-`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: row;
@@ -66,22 +62,6 @@ function Post(props) {
   const classes = useStyles();
   const [value, setValue] = useState("");
   const { postId } = props.match.params;
-
-  async function addComment() {
-    if(value.length > 0){
-      axios.post("https://simple-blog-api.crew.red/comments", {
-          postId: +postId,
-          body: value
-        })
-        .then(function(response) {
-          console.log(response);
-          props.fetchComments(postId);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
 
   const handleChange = () => event => {
     setValue(event.target.value);
@@ -119,17 +99,8 @@ function Post(props) {
           </p>
         </Details>
         <Description>{props.post.body}</Description>
-
-        <Comments>
-          <p>Comments</p>
-          {props.post.comments &&
-            props.post.comments.map(item => (
-              <Item key={item.id}>
-                {item.body}
-                <hr />
-              </Item>
-            ))}
-        </Comments>
+        <CommentsList comments={props.post.comments} />
+        
         <Form noValidate autoComplete="off">
           <TextField
             id="outlined-full-width"
@@ -144,7 +115,7 @@ function Post(props) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => addComment()}
+            onClick={() => addComment( value, postId, props.fetchComments )}
           >
             Send
           </Button>
