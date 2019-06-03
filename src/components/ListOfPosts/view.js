@@ -10,6 +10,7 @@ const Post = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1em;
+  cursor: pointer;
   >div{
     padding: 1.2em;
   }
