@@ -7,8 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import addComment from './addComment.js'
-import CommentsList from './commentsList.js'
+import addComment from "./addComment.js";
+import CommentsList from "./commentsList.js";
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -48,7 +48,6 @@ const Details = styled.div`
 const Description = styled.p`
   color: rgba(0, 0, 0, 0.75);
 `;
-
 
 const Form = styled.form`
   display: flex;
@@ -100,7 +99,7 @@ function Post(props) {
         </Details>
         <Description>{props.post.body}</Description>
         <CommentsList comments={props.post.comments} />
-        
+
         <Form noValidate autoComplete="off">
           <TextField
             id="outlined-full-width"
@@ -115,7 +114,7 @@ function Post(props) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => addComment( value, postId, props.fetchComments )}
+            onClick={() => addComment(value, postId, props.fetchComments)}
           >
             Send
           </Button>

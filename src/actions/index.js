@@ -22,7 +22,7 @@ export function postsFetchingSuccessful(posts) {
 export function postsFetching() {
   let url = "https://simple-blog-api.crew.red/posts";
   return dispatch => {
-    dispatch(postsIsLoading(true));   
+    dispatch(postsIsLoading(true));
 
     fetch(url)
       .then(response => {
@@ -39,7 +39,6 @@ export function postsFetching() {
       .catch(() => dispatch(errorWhileFetchingPosts(true)));
   };
 }
-
 
 export function errorWhileFetchingPost(bool) {
   return {
@@ -82,4 +81,3 @@ export function postFetching(id) {
       .catch(() => dispatch(errorWhileFetchingPost(true)));
   };
 }
-

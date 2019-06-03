@@ -1,4 +1,3 @@
-    
 export function postsHasErrored(state = false, action) {
   switch (action.type) {
     case "ERROR_WHILE_FETCHING_POSTS":
