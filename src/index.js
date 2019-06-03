@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 
 const history = createBrowserHistory();
-const store = configureStore();
+const store = configureStore({posts:[]});
 
 ReactDOM.render(
   <Provider store={store}>
