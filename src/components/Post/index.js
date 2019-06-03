@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { postFetching } from "../../actions";
+import { withRouter } from 'react-router-dom'
 
 function Post(props) {
+  
   useEffect(() => {
+    const {postId} = props.match.params
+    
     if (props.post.length < 1) {
-      props.fetchComments();
+      props.fetchComments(postId);
     }
-  });
+  },[]);
 
-  console.log(props);
+  console.log(props.history);
   if (props.postHasErrored) {
     return (
       <h1>
@@ -43,11 +47,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchComments: () => dispatch(postFetching(1))
+    fetchComments: (id) => dispatch(postFetching(id))
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Post);
+)(Post));

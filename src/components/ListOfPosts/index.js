@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { postsFetching } from "../../actions";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Posts from './view.js'
+import Posts from "./view.js";
 
 const Wrapper = styled.div`
   width: 90%;
   height: 90%;
-`
-const Header = styled.div`
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Header = styled.div``;
 function ListOfPosts(props) {
-  
   useEffect(() => {
-    if(props.posts.length < 1){
+    if (props.posts.length < 1) {
       props.fetchData();
-    }    
+    }
   });
 
   if (props.postsHasErrored) {
@@ -36,15 +37,9 @@ function ListOfPosts(props) {
       <Header>
         <h1>Latest Posts</h1>
       </Header>
-      {/* {props.posts !== undefined && props.posts.length > 1  &&  <Posts posts={props.posts} />} */}
-      <ul>
-      {props.posts.map(item => (
-        <li key={item.id}>
-          <h1>{item.title}</h1>
-          <p>{item.body}</p>
-        </li>
-      ))}
-    </ul> 
+      {props.posts !== undefined && props.posts.length > 1 && (
+        <Posts posts={props.posts} />
+      )}
     </Wrapper>
   );
 }
